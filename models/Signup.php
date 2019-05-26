@@ -6,26 +6,33 @@ use yii\base\Model;
 
 class Signup extends Model
 {
-    public $email;
+    public $username;
     public $password;
 
     public function rules()
     {
         return [
 
-            [['email','password'],'required'],
-            ['email','email'],
-            ['email','unique','targetClass'=>'app\models\User'],
-            ['password','string','min'=>2,'max'=>10]
+            [['username','password'],'required', 'message' => 'Заповніть поле {attribute}'],
+            ['username','unique','targetClass'=>'app\models\User'],
+            ['password','string','min'=>2,'max'=>12]
         ];
     }
 
     public function signup()
     {
         $user = new User();
-        $user->email = $this->email;
-        $user->setPassword($this->password);
-        return $user->save(); //вернет true или false
+        $user->username = $this->username;
+        $user->password_hash = $this->password;
+        return $user->save();
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'Логін',
+            'password' => 'Пароль'
+        ];
     }
 
 }

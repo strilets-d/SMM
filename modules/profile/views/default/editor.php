@@ -1,7 +1,10 @@
+<?php
+$this->registerCssFile('@web/css/style.css');
+?>
 <!DOCTYPE html>
 <html>
 <body>
-<div style="margin-top:50px; margin-left:-113px; min-width: 100%;">
+<div style="margin-top:-20px; margin-left:-113px; min-width: 100%;">
 <!-- Shade for all Dialogs -->
 <div id="overlay"></div>
 <!-- Crop Layer Element -->

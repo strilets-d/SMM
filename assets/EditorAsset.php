@@ -20,7 +20,8 @@ class EditorAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/style.css',
+        'css/site.css',
+        'https://use.fontawesome.com/releases/v5.8.2/css/all.css'
     ];
     public $js = [
         'js/ColorFilter.js',
@@ -36,7 +37,9 @@ class EditorAsset extends AssetBundle
         'js/layer.js',
         'js/image.js',
         'js/filters.js',
-        'js/scripts.js'
+        'js/scripts.js',
+        'https://code.jquery.com/jquery-3.3.1.slim.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

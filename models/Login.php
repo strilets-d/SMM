@@ -6,7 +6,7 @@ use yii\base\Model;
 
 class Login extends Model
 {
-    public $email;
+    public $username;
     public $password;
 
 
@@ -14,31 +14,28 @@ class Login extends Model
     {
         return [
 
-            [['email','password'],'required'],
-            ['email','email'],
-            ['password','validatePassword'] //собственная функция для валидации пароля
+            [['username','password'],'required'],
+            ['password','validatePassword']
         ];
     }
 
     public function validatePassword($attribute,$params)
     {
-        if(!$this->hasErrors()) // если нет ошибок в валидации
+        if(!$this->hasErrors())
         {
-            $user = $this->getUser(); // получаем пользователя для дальнейшего сравнения пароля
+            $user = $this->getUser();
 
             if(!$user || !$user->validatePassword($this->password))
             {
-                //если мы НЕ нашли в базе такого пользователя
-                //или введенный пароль и пароль пользователя в базе НЕ равны ТО,
-                $this->addError($attribute,'Пароль или имейл введены неверно');
-                //добавляем новую ошибку для атрибута password о том что пароль или имейл введены не верно
+
+                $this->addError($attribute,'Ви ввели неправильний логін або пароль');
             }
         }
     }
 
     public function getUser()
     {
-        return User::findOne(['email'=>$this->email]); // а получаем мы его по введенному имейлу
+        return User::findOne(['username'=>$this->username]);
     }
 
 

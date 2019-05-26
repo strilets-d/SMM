@@ -35,8 +35,8 @@ EditorAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Главная', 'url' => ['/site/index']],
-            ['label' => 'Редактор', 'url' => ['default/editor']],
+            ['label' => 'Головна', 'url' => ['/site/index']],
+            ['label' => 'Користувачі', 'url' => ['user/']],
             Yii::$app->user->isGuest ? (
             ['label' => 'Войти', 'url' => ['/site/login']]
             ) : (['label' => 'Вийти('.Yii::$app->user->identity->username.')', 'url' => ['/site/logout']]
