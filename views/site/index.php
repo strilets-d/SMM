@@ -84,11 +84,11 @@ foreach ($users as $user) {
                 }
                 echo '
             <div class="post box-shadow">
-                <div class="post-header">
-                    <div >
+                <div class="post-header in-row" style="width:100%;">
+                    <div  style="width:7%;">
                         <img src="https://graph.facebook.com/' . $ac['id'] . '/picture?access_token=' . $ac['access_token'] . '" class="post-header-photo">             
                     </div>
-                    <div>
+                    <div style="width:83%;">
                         <div class="post-page">
                         ' . $ac['name'] . $post['story'] . '
                         </div>
@@ -96,7 +96,7 @@ foreach ($users as $user) {
                             format_interval($difference) . ' тому.</text>
                         </div>
                     </div>
-                    <div class="dropdown" style="margin-left:350px;">
+                    <div class="dropdown" style="margin-right:0; margin-left:auto; width:10%;">
                     <button class="my-button dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-ellipsis-h"></i>
                     </button>
