@@ -48,5 +48,8 @@ class FBConnection
         $me = $response->getGraphUser();
         echo 'Logged in as ' . $me->getName();
     }
+
 }
+
+
 ?>

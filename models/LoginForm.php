@@ -78,4 +78,10 @@ class LoginForm extends Model
 
         return $this->_user;
     }
+
+    public function LoginTest($user){
+        if($user[0]['username'] == "") return false;
+        if($user[0]['password'] == "") return false;
+        return true;
+    }
 }

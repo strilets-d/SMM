@@ -1,5 +1,5 @@
 <?php
-
+use kartik\report\Report;
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -14,6 +14,17 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'report' => [
+            'class' => Report::classname(),
+            'apiKey' => '4hgpfxsf862u6c2ucj475eui',
+            'templateId' => 1744, // optional: the numeric identifier for your default global template
+            'outputAction' => Report::ACTION_FORCE_DOWNLOAD, // or Report::ACTION_GET_DOWNLOAD_URL
+            'outputFileType' => Report::OUTPUT_PDF, // or Report::OUTPUT_DOCX
+            'outputFileName' => 'Statistic.pdf', // a default file name if
+            'defaultTemplateVariables' => [ // any default data you desire to always default
+                'companyName' => 'smm.strilets'
+            ]
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '83fNWmpvQVHm1Z6v5EdCK4UEcR-dnSTS',
@@ -60,7 +71,7 @@ $config = [
                     'clientSecret' => 'f0ab41a0837c965a3a85ff0b5d37f2bf',
                 ],
             ],
-        ]
+        ],
     ],
     'params' => $params,
     'modules' => [

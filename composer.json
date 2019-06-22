@@ -21,7 +21,9 @@
         "yiisoft/yii2-authclient": "^2.2",
         "nodge/yii2-eauth": "~2.0",
         "facebook/graph-sdk": "^5.7",
-      "ext-json": "*"
+      "ext-json": "*",
+      "ext-curl": "*",
+        "kartik-v/yii2-report": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

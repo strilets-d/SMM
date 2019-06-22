@@ -22,7 +22,16 @@ $this->title = 'Особистий кабінет';
             <?php
             $auth = Auth::findOne(['user_id' => Yii::$app->user->identity->id]);
             ?>
-            <?= Html::img("https://graph.facebook.com/".$auth->source_id."/picture?type=large", ['style' => 'width: 250px; height: 250px; border-radius:50%;']) ?>
+            <?php
+            if($auth->source == "facebook"){
+            echo Html::img("https://graph.facebook.com/".$auth->source_id."/picture?type=large", ['style' => 'width: 250px; height: 250px; border-radius:50%;']);
+            }
+            else if($auth->source == "instagram"){
+            echo Html::img(Yii::$app->user->identity->image, ['style' => 'width: 250px; height: 250px; border-radius:50%;']);
+            } else if($auth == NULL){
+                echo Html::img("@web/img/".Yii::$app->user->identity->image, ['style' => 'width: 250px; height: 250px; border-radius:50%;']);
+            }
+            ?>
         </div>
         <div style="width:70%; text-align: left;">
             <h4>І'мя користувача: <?=Yii::$app->user->identity->username?></h4>

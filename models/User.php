@@ -13,18 +13,21 @@ use yii\web\IdentityInterface;
  * @property string $password_hash
  * @property string $email
  * @property int $status
- * @property int $created_at
+ * @property string $created_at
  * @property int $admin
+ * @property string $image
  *
  * @property Auth[] $auths
+ * @property Sessions[] $sessions
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
 
-    const STATUS_INSERTED  = 0;
+    const STATUS_INSERTED = 0;
     const STATUS_ACTIVE = 1;
     const STATUS_BLOCKED = 2;
     const STATUS_ADMIN = 3;
+
     /**
      * {@inheritdoc}
      */
@@ -40,8 +43,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             [['username', 'password_hash'], 'required'],
-            [['status',  'admin'], 'integer'],
-            [['username','password_hash','created_at', 'email'], 'string', 'max' => 255],
+            [['status', 'admin'], 'integer'],
+            [['created_at'], 'safe'],
+            [['username', 'password_hash', 'email', 'image'], 'string', 'max' => 255],
         ];
     }
 
@@ -63,7 +67,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public function beforeSave($insert)
     {
-        if($this->isNewRecord){
+        if ($this->isNewRecord) {
             $this->password_hash = sha1($this->password_hash);
         }
         return parent::beforeSave($insert); //
@@ -76,6 +80,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->hasMany(Auth::className(), ['user_id' => 'id']);
     }
+
     public function setPassword($password)
     {
         $this->password_hash = sha1($password);
@@ -110,5 +115,33 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function validateAuthKey($authKey)
     {
 
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSessions()
+    {
+        return $this->hasMany(Sessions::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPostsForComparisons()
+    {
+        return $this->hasMany(PostsForComparison::className(), ['id_user' => 'id']);
+    }
+
+    /*** @return \yii\db\ActiveQuery
+     */
+    public function getPostsForComparisons0()
+    {
+        return $this->hasMany(PostsForComparison::className(), ['comparator' => 'id']);
+    }
+
+    public function checkPassword($user){
+        if($user['password_hash'] == sha1('123'));
+        return true;
     }
 }

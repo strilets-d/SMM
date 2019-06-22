@@ -61,4 +61,12 @@ class MarkeredPosts extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Markers::className(), ['id_marker' => 'id_marker']);
     }
+
+    public function getKil($posts){
+        $kill=0;
+        foreach($posts as $post){
+            if($post['marker'] == 'розіграш'){$kill++;}
+        }
+        return $kill;
+    }
 }
